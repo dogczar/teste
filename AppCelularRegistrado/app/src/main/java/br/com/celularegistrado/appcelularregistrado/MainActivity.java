@@ -116,6 +116,13 @@ public class MainActivity extends AppCompatActivity {
                 R.mipmap.celular
         };
 
+        private final int[] ICONS2 = {
+                R.mipmap.tag_pressed,
+                R.mipmap.qrcode_pressed,
+                R.mipmap.celular_pressed
+        };
+
+
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -132,7 +139,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return CardFragment.newInstance(position);
+
+            if(position==1){
+                return QRCodeFragment.newInstance("QRCODE","QRCODE");
+            }else if(position==0) {
+
+                return TagFragment.newInstance("TAG","TAG");
+            }else{
+                return ImeiFragment.newInstance("IMEI","IMEI");
+            }
         }
 
 
@@ -140,17 +155,20 @@ public class MainActivity extends AppCompatActivity {
         public View getCustomTabView(ViewGroup parent, int position) {
             View tab = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, parent, false);
             ((ImageView) tab.findViewById(R.id.image)).setImageResource(ICONS[position]);
+            ((ImageView) tab.findViewById(R.id.image2)).setImageResource(ICONS2[position]);
             return tab;
         }
 
         @Override
         public void tabSelected(View tab) {
-
+            ((ImageView) tab.findViewById(R.id.image)).setVisibility(View.INVISIBLE);
+            ((ImageView) tab.findViewById(R.id.image2)).setVisibility(View.VISIBLE);
         }
 
         @Override
         public void tabUnselected(View tab) {
-
+            ((ImageView) tab.findViewById(R.id.image)).setVisibility(View.VISIBLE);
+            ((ImageView) tab.findViewById(R.id.image2)).setVisibility(View.INVISIBLE);
         }
     }
 
