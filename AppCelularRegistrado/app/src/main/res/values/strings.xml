@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">AppCelularRegistrado</string>
+    <string name="app_name">Celular Registrado</string>
     <string name="action_settings">Settings</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="titulo_principal">Consultar Celular Registrado</string>
+    <string name="titulo_principal">Celular Registrado</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_resultado">ResultadoActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
 </resources>

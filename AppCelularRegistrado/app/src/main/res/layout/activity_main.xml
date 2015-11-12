@@ -7,15 +7,54 @@
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
-    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Consulta Celular Registrado" />
 
-    </android.support.design.widget.AppBarLayout>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/trans"
+                android:scaleType="fitXY"
+                android:src="@mipmap/home"
+                />
+
+            <ImageButton
+                android:id="@+id/bt_info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/trans"
+                android:scaleType="fitXY"
+                android:src="@mipmap/info" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 
     <com.astuetz.PagerSlidingTabStrip
@@ -31,12 +70,5 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:context=".MainActivity"/>
-
-    <!--<android.support.design.widget.FloatingActionButton android:id="@+id/fab"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center" android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/celular"  app:backgroundTint="@color/colortBt" />-->
-
-
 
 </LinearLayout>

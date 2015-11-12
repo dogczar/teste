@@ -1,11 +1,16 @@
 package br.com.celularegistrado.appcelularregistrado;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class ImeiFragment extends Fragment {
@@ -17,6 +22,10 @@ public class ImeiFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView txtHtml;
+    private View v;
+
 
     // TODO: Rename and change types and number of parameters
     public static ImeiFragment newInstance(String param1, String param2) {
@@ -44,8 +53,22 @@ public class ImeiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_imei, container, false);
+        v = inflater.inflate(R.layout.fragment_imei, container, false);
+
+        txtHtml = (TextView) v.findViewById(R.id.txtHtml);
+
+        txtHtml.setText(Html.fromHtml("<font>IMEI (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
+
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                startActivity(i);
+            }
+        });
+
+        return v;
     }
 
 }

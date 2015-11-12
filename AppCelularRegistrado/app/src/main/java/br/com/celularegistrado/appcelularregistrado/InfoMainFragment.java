@@ -1,35 +1,33 @@
 package br.com.celularegistrado.appcelularregistrado;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
-public class TagFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link InfoMainFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link InfoMainFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class InfoMainFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private TextView txtHtml;
-    private View v;
-
-
-    // TODO: Rename and change types and number of parameters
-    public static TagFragment newInstance(String param1, String param2) {
-        TagFragment fragment = new TagFragment();
+    public static InfoMainFragment newInstance(String param1, String param2) {
+        InfoMainFragment fragment = new InfoMainFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -37,7 +35,7 @@ public class TagFragment extends Fragment {
         return fragment;
     }
 
-    public TagFragment() {
+    public InfoMainFragment() {
         // Required empty public constructor
     }
 
@@ -53,26 +51,9 @@ public class TagFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_tag, container, false);
-
-        txtHtml = (TextView) v.findViewById(R.id.txtHtml);
-
-        txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
-
-
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(),ResultadoActivity.class);
-                startActivity(i);
-            }
-        });
-
-        return v;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_info_main, container, false);
     }
-
-
 
 
 }

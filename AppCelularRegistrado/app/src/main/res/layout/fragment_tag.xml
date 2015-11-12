@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/TextView"
+            style="@style/TextViewWhite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Consultar por TAG" />
@@ -27,18 +27,32 @@
 
         <TextView
             style="@style/TextView"
+            android:id="@+id/txtHtml"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="TAG (O que é Isso?)" />
+            android:text="QR Code (O que é Isso?)" />
 
-        <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:hint="INFORME A TAG"
-            android:backgroundTint="@color/abc_background_cache_hint_selector_material_dark"
             android:layout_marginTop="10dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Sinalizador"
+                android:text="  " />
+
+            <EditText
+                style="@style/EditFieldSearch"
+                android:hint="INFORME A TAG" />
+
+        </LinearLayout>
+
+
 
         <TextView
             style="@style/TextView"
@@ -58,4 +72,13 @@
         android:src="@mipmap/tag_pressed"
         app:backgroundTint="@color/colortBt"
         android:tag="rewe"/>
+    <TextView
+        android:layout_gravity="bottom|center"
+        android:layout_margin="10dp"
+        android:textSize="13dp"
+        android:fontFamily="Myriad Pro Condensed"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consultar TAG"/>
 </FrameLayout>

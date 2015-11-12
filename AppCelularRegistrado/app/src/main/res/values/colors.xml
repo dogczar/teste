@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#0F1E22</color>
     <color name="colorAccent">#182E36</color>
     <color name="colortBt">#36B9BD</color>
+    <color name="colorWhite">#ffff</color>
+    <color name="colorCinza">#696969</color>
+    <color name="colorAlertPositivo">#38B449</color>
+    <color name="colorAlertNegativo">#ED1C24</color>
+    <color name="trans">#00000000 </color>
+
 </resources>

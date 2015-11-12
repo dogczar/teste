@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/TextView"
+            style="@style/TextViewWhite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Consultar por QR Code" />
@@ -26,6 +26,7 @@
 
         <TextView
             style="@style/TextView"
+            android:id="@+id/txtHtml"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,5 +75,13 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|center" android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/qrcode_pressed"  app:backgroundTint="@color/colortBt" />
-
+    <TextView
+        android:layout_gravity="bottom|center"
+        android:layout_margin="10dp"
+        android:textSize="13dp"
+        android:fontFamily="Myriad Pro Condensed"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consultar QRCode"/>
 </FrameLayout>

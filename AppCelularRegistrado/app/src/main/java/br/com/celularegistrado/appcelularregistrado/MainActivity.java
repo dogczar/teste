@@ -1,6 +1,7 @@
 package br.com.celularegistrado.appcelularregistrado;
 
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.pager)
     ViewPager pager;
 
+    ImageButton bt_info;
+
     private MyPagerAdapter adapter;
     private Drawable oldBackground = null;
     private int currentColor;
@@ -43,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ButterKnife.inject(this);
-        setSupportActionBar(toolbar);
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);
         // enable status bar tint
@@ -59,10 +61,22 @@ public class MainActivity extends AppCompatActivity {
         pager.setCurrentItem(1);
         changeColor(getResources().getColor(R.color.colorPrimary));
 
+        bt_info = (ImageButton) findViewById(R.id.bt_info);
+
+        bt_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(i);
+            }
+        });
+
         tabs.setOnTabReselectedListener(new PagerSlidingTabStrip.OnTabReselectedListener() {
             @Override
             public void onTabReselected(int position) {
                 Toast.makeText(MainActivity.this, "Tab reselected: " + position, Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -79,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        return false;
     }
 
     @Override
@@ -179,14 +193,6 @@ public class MainActivity extends AppCompatActivity {
         Drawable colorDrawable = new ColorDrawable(newColor);
         Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
         LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
-        if (oldBackground == null) {
-            getSupportActionBar().setBackgroundDrawable(ld);
-        } else {
-            TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            getSupportActionBar().setBackgroundDrawable(td);
-            td.startTransition(200);
-        }
-
         oldBackground = ld;
         currentColor = newColor;
     }

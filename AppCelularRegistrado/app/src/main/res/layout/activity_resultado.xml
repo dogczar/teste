@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Resultado da Consulta" />
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/trans"
+                android:scaleType="fitXY"
+                android:src="@mipmap/home"
+                />
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/trans"
+                android:scaleType="fitXY"
+                android:src="@mipmap/info" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<include layout="@layout/content_resultado" />-->
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/pica_pau" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAlertPositivo"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/colorAlertPositivo">
+
+        <Button
+            android:id="@+id/bt_positivo"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAlertPositivo"
+            android:drawableLeft="@mipmap/v"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingRight="19dp"
+            android:text="CELULAR REGISTRADO" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/elevated_button_card"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorAlertPositivo"
+        android:backgroundTint="@color/colorAlertNegativo"
+        app:cardBackgroundColor="@color/colorAlertNegativo">
+
+        <Button
+            android:id="@+id/bt_negativo"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorAlertNegativo"
+            android:drawableLeft="@mipmap/carta"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:text="ENVIAR ALERTA" />
+    </android.support.v7.widget.CardView>
+
+
+    <TextView
+        style="@style/TextViewWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="0dp"
+        android:gravity="center"
+        android:text="Renan Junior"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorAlertPositivo"
+        app:cardBackgroundColor="@color/colorPrimaryDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="STATUS :" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Roubada"
+                android:textColor="@color/colorAlertNegativo" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="-10dp"
+                android:text="....................................................................."
+                android:textColor="@color/colorCinza" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="NÚMERO IMEI :" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Roubada"
+                android:textColor="@color/colorAlertNegativo" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="-10dp"
+                android:text="....................................................................."
+                android:textColor="@color/colorCinza" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="OPERADORA :" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="CLARO"
+                android:textColor="@color/colorAlertPositivo" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="-10dp"
+                android:text="....................................................................."
+                android:textColor="@color/colorCinza" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="MARCA / MODELO :" />
+
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="MOTOROLA / MOTO X"
+                android:textColor="@color/colorAlertPositivo" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
