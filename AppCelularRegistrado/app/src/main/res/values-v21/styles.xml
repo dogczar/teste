@@ -11,16 +11,16 @@
 
     <style name="TextView">
         <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:fontFamily">myriad-pro-condensed</item>
         <item name="android:textColor">@android:color/darker_gray</item>
         <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">myriadpro_cond.ttf</item>
     </style>
 
 
 
     <style name="TextViewWhite">
         <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:fontFamily">myriad-pro-condensed</item>
+        <item name="android:fontFamily">myriadpro_cond.ttf</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">15dp</item>
     </style>
