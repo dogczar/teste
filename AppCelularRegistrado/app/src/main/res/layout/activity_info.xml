@@ -1,35 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:context=".InfoActivity"/>
+        tools:context=".InfoActivity" />
 
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/ball1"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:scaleType="fitXY"
+            android:background="@color/trans"
+            android:src="@mipmap/circlew"/>
+        <ImageView
+            android:id="@+id/ball2"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:scaleType="fitXY"
+            android:background="@color/trans"
+            android:src="@mipmap/circlen"/>
+        <ImageView
+            android:id="@+id/ball3"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:scaleType="fitXY"
+            android:background="@color/trans"
+            android:src="@mipmap/circlen"/>
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="1dp"
-        android:src="@mipmap/celular"
-         />
+        android:src="@mipmap/lupa"
+        app:backgroundTint="@color/colortBt" />
+
     <TextView
-        android:layout_gravity="bottom|center"
-        android:layout_margin="10dp"
-        android:textSize="13dp"
-        android:fontFamily="Myriad Pro Condensed"
-        android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Consultar"/>
+        android:layout_gravity="bottom|center"
+        android:layout_margin="10dp"
+        android:fontFamily="Myriad Pro Condensed"
+        android:text="Consultar"
+        android:textColor="@color/colorWhite"
+        android:textSize="13dp" />
+
 
 </LinearLayout>

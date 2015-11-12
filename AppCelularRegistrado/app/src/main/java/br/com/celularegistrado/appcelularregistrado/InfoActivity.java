@@ -1,30 +1,20 @@
 package br.com.celularegistrado.appcelularregistrado;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.astuetz.PagerSlidingTabStrip;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
-
-import butterknife.InjectView;
 
 public class InfoActivity extends AppCompatActivity {
 
     ViewPager pager;
-
+    ImageView ball1;
+    ImageView ball2;
+    ImageView ball3;
     private MyPagerAdapter adapter;
 
     @Override
@@ -39,7 +29,12 @@ public class InfoActivity extends AppCompatActivity {
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
                 .getDisplayMetrics());
         pager.setPageMargin(pageMargin);
-        pager.setCurrentItem(1);
+        pager.setCurrentItem(0);
+
+        ball1 = (ImageView) findViewById(R.id.ball1);
+        ball2 = (ImageView) findViewById(R.id.ball2);
+        ball3 = (ImageView) findViewById(R.id.ball3);
+
 
     }
 
@@ -62,14 +57,40 @@ public class InfoActivity extends AppCompatActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
-            if(position==1){
-                return InfoMainFragment.newInstance("QRCODE","QRCODE");
-            }else if(position==0) {
-
-                return InfoMainFragment.newInstance("QRCODE","QRCODE");
+        public long getItemId(int position) {
+            if(position==0){
+                ball1.setImageResource(R.mipmap.circlew);
+                ball2.setImageResource(R.mipmap.circlen);
+                ball3.setImageResource(R.mipmap.circlen);
+            }else if(position==1) {
+                ball1.setImageResource(R.mipmap.circlen);
+                ball2.setImageResource(R.mipmap.circlew);
+                ball3.setImageResource(R.mipmap.circlen);
             }else{
-                return InfoMainFragment.newInstance("QRCODE","QRCODE");
+                ball1.setImageResource(R.mipmap.circlen);
+                ball2.setImageResource(R.mipmap.circlen);
+                ball3.setImageResource(R.mipmap.circlew);
+            }
+            return position;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if(position==0){
+                ball1.setImageResource(R.mipmap.circlew);
+                ball2.setImageResource(R.mipmap.circlen);
+                ball3.setImageResource(R.mipmap.circlen);
+                return Tutorial1Fragment.newInstance("QRCODE","QRCODE");
+            }else if(position==1) {
+                ball1.setImageResource(R.mipmap.circlen);
+                ball2.setImageResource(R.mipmap.circlew);
+                ball3.setImageResource(R.mipmap.circlen);
+                return Tutorial2Fragment.newInstance("QRCODE","QRCODE");
+            }else{
+                ball1.setImageResource(R.mipmap.circlen);
+                ball2.setImageResource(R.mipmap.circlen);
+                ball3.setImageResource(R.mipmap.circlew);
+                return Tutorial3Fragment.newInstance("QRCODE","QRCODE");
             }
         }
     }
