@@ -57,13 +57,31 @@
     </LinearLayout>
 
     <!--<include layout="@layout/content_resultado" />-->
-
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:src="@mipmap/pica_pau"
+        app:border_color="#EEEEEE"
+        app:border_width="8dp"
+        android:layout_gravity="center"
+        app:shadow="true"
+        android:layout_marginBottom="-30dp"
+        app:shadow_radius="10"
+        app:shadow_color="#0000"/>
+    <android.support.v7.widget.CardView
+        android:visibility="gone"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAlertPositivo"
+        app:cardCornerRadius="180dp"
+        app:cardBackgroundColor="@color/colorAlertPositivo">
     <ImageView
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:src="@mipmap/pica_pau" />
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:layout_width="300dp"
@@ -126,9 +144,9 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorAlertPositivo"
         app:cardBackgroundColor="@color/colorPrimaryDark">
 
@@ -136,21 +154,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:text="STATUS :" />
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Roubada"
                 android:textColor="@color/colorAlertNegativo" />
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
@@ -158,20 +173,17 @@
                 android:layout_marginTop="-10dp"
                 android:text="....................................................................."
                 android:textColor="@color/colorCinza" />
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="NÚMERO IMEI :" />
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Roubada"
                 android:textColor="@color/colorAlertNegativo" />
-
             <TextView
                 style="@style/TextViewWhite"
                 android:layout_width="match_parent"
