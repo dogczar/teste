@@ -59,7 +59,15 @@ public class QRCodeFragment extends Fragment {
 
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
 
-        txtHtml.setText(Html.fromHtml("<font>TAG (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
+        txtHtml.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), QRCodeInfoActivity.class);
+                startActivity(i);
+            }
+        });
+
+        txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

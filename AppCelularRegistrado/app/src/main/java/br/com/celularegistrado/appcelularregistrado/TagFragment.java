@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -25,6 +26,9 @@ public class TagFragment extends Fragment {
 
     private TextView txtHtml;
     private View v;
+    private TextView sinalizador;
+    private TextView txtObrigatorio;
+    private EditText txtCampo;
 
 
     // TODO: Rename and change types and number of parameters
@@ -57,17 +61,45 @@ public class TagFragment extends Fragment {
 
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
 
-        txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
+        txtHtml.setText(Html.fromHtml("<font>TAG (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
+        txtHtml.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), TagInfoActivity.class);
+                startActivity(i);
+            }
+        });
 
+        txtObrigatorio = (TextView)  v.findViewById(R.id.txtObrigatorio);
+        sinalizador = (TextView) v.findViewById(R.id.sinalizador);
+        txtCampo = (EditText) v.findViewById(R.id.txtCampo);
+        txtCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+                txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
 
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(),ResultadoActivity.class);
-                startActivity(i);
+                if(txtCampo.length()>5) {
+                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                    Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                    startActivity(i);
+                }else{
+                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
+                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                }
             }
         });
+
 
         return v;
     }

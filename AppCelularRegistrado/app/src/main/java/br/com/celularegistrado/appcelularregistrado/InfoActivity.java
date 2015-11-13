@@ -1,12 +1,14 @@
 package br.com.celularegistrado.appcelularregistrado;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.ImageView;
 
 public class InfoActivity extends AppCompatActivity {
@@ -34,6 +36,14 @@ public class InfoActivity extends AppCompatActivity {
         ball1 = (ImageView) findViewById(R.id.ball1);
         ball2 = (ImageView) findViewById(R.id.ball2);
         ball3 = (ImageView) findViewById(R.id.ball3);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
     }

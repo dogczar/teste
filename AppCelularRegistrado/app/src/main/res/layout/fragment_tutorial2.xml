@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:orientation="vertical">
@@ -30,14 +30,26 @@
             android:layout_marginLeft="0dp"
             android:text="Faça a consulta e reduza o risco de adquirir celulares roubados."
              />
-        <TextView
-            style="@style/TextViewWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
-            android:text="Evite comprar celulares roubados"
-            android:textStyle="bold" />
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/seta"/>
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:text="Evite comprar celulares roubados"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <TextView
             style="@style/TextViewWhite"
             android:layout_width="match_parent"
@@ -46,14 +58,26 @@
             android:layout_marginLeft="0dp"
             android:text="Antes de adquirir um celular faça a consulta prévia do registro para verificar se há alerta de roubo para o celular."
             />
-        <TextView
-            style="@style/TextViewWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
-            android:text="Confira os dados do proprietário"
-            android:textStyle="bold" />
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/seta"/>
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:text="Confira os dados do proprietário"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <TextView
             style="@style/TextViewWhite"
             android:layout_width="match_parent"

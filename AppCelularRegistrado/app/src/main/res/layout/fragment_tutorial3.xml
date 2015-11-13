@@ -64,14 +64,28 @@
             android:layout_marginLeft="0dp"
             android:text="contato@celularegistrado.com.br"
             />
-        <TextView
-            style="@style/TextViewWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="0dp"
-            android:gravity="center"
-            android:text="fb.com/Celularegistrado"
-            android:textStyle="bold" />
+            >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitXY"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/logo_facebook_verde"/>
+            <TextView
+                style="@style/TextViewWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:text="fb.com/Celularegistrado"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

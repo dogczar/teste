@@ -9,4 +9,10 @@
     <string name="title_activity_resultado">ResultadoActivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_info">InfoActivity</string>
+    <string name="texto_sobre_qrcode">O QR Code é um código de barras bidimensional que serve como um direcionados para URL ou dados, proporcionando maio velocidade
+        no acesso a informações, Sua leitura pode ser realizada por celulares e tablets que possuem APP para leitura de QR Code.</string>
+    <string name="texto_sobre_tag">Tag é um identificador único de um registro armazenado no banco de dados do Celular Registrado.</string>
+    <string name="title_activity_qrcode_info">QR Code</string>
+    <string name="title_activity_imei_info">Imei</string>
+    <string name="title_activity_tag_info">Tag</string>
 </resources>

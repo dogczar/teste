@@ -43,10 +43,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/sinalizador"
                 style="@style/Sinalizador"
                 android:text="  " />
 
             <EditText
+                android:id="@+id/txtCampo"
+                android:lines="1"
+                android:maxLength="20"
                 style="@style/EditFieldSearch"
                 android:hint="INFORME O IMEI" />
 
@@ -54,6 +58,7 @@
 
         <TextView
             style="@style/TextView"
+            android:id="@+id/txtObrigatorio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"

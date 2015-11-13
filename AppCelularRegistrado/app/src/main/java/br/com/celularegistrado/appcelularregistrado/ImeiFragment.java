@@ -7,9 +7,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -25,6 +27,9 @@ public class ImeiFragment extends Fragment {
 
     private TextView txtHtml;
     private View v;
+    private TextView sinalizador;
+    private TextView txtObrigatorio;
+    private EditText txtCampo;
 
 
     // TODO: Rename and change types and number of parameters
@@ -56,15 +61,42 @@ public class ImeiFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_imei, container, false);
 
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
-
+        txtHtml.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ImeiInfoActivity.class);
+                startActivity(i);
+            }
+        });
         txtHtml.setText(Html.fromHtml("<font>IMEI (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
 
+        txtObrigatorio = (TextView)  v.findViewById(R.id.txtObrigatorio);
+        sinalizador = (TextView) v.findViewById(R.id.sinalizador);
+        txtCampo = (EditText) v.findViewById(R.id.txtCampo);
+        txtCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+                txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), ResultadoActivity.class);
-                startActivity(i);
+                if(txtCampo.length()>5) {
+                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                    Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                    startActivity(i);
+                }else{
+                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
+                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                }
             }
         });
 

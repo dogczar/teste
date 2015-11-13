@@ -40,6 +40,21 @@
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".QRCodeInfoActivity"
+            android:label="@string/title_activity_qrcode_info"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".ImeiInfoActivity"
+            android:label="@string/title_activity_imei_info"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".TagInfoActivity"
+            android:label="@string/title_activity_tag_info"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
