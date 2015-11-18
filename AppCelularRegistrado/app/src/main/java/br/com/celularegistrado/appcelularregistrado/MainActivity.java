@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,6 +24,10 @@ import android.widget.Toast;
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
+import br.com.celularegistrado.appcelularregistrado.Activity.InfoActivity;
+import br.com.celularegistrado.appcelularregistrado.Fragment.ImeiFragment;
+import br.com.celularegistrado.appcelularregistrado.Fragment.QRCodeFragment;
+import br.com.celularegistrado.appcelularregistrado.Fragment.TagFragment;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -88,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
+        // List<Pet> petList = RestClient.getInstance().getPetsByTipo(tipo);
     }
 
     @Override
@@ -155,12 +159,12 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
 
             if(position==1){
-                return QRCodeFragment.newInstance("QRCODE","QRCODE");
+                return QRCodeFragment.newInstance("QRCODE", "QRCODE");
             }else if(position==0) {
 
-                return TagFragment.newInstance("TAG","TAG");
+                return TagFragment.newInstance("TAG", "TAG");
             }else{
-                return ImeiFragment.newInstance("IMEI","IMEI");
+                return ImeiFragment.newInstance("IMEI", "IMEI");
             }
         }
 

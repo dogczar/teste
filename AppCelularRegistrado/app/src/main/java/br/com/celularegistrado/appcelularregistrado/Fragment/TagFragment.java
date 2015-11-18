@@ -1,10 +1,8 @@
-package br.com.celularegistrado.appcelularregistrado;
+package br.com.celularegistrado.appcelularregistrado.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import br.com.celularegistrado.appcelularregistrado.R;
+import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
+import br.com.celularegistrado.appcelularregistrado.Activity.TagInfoActivity;
 
 
 public class TagFragment extends Fragment {

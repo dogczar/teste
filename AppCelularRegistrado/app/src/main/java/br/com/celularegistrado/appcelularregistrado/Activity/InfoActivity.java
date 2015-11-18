@@ -1,4 +1,4 @@
-package br.com.celularegistrado.appcelularregistrado;
+package br.com.celularegistrado.appcelularregistrado.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+
+import br.com.celularegistrado.appcelularregistrado.Fragment.Tutorial1Fragment;
+import br.com.celularegistrado.appcelularregistrado.Fragment.Tutorial2Fragment;
+import br.com.celularegistrado.appcelularregistrado.Fragment.Tutorial3Fragment;
+import br.com.celularegistrado.appcelularregistrado.R;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -90,17 +95,17 @@ public class InfoActivity extends AppCompatActivity {
                 ball1.setImageResource(R.mipmap.circlew);
                 ball2.setImageResource(R.mipmap.circlen);
                 ball3.setImageResource(R.mipmap.circlen);
-                return Tutorial1Fragment.newInstance("QRCODE","QRCODE");
+                return Tutorial1Fragment.newInstance("QRCODE", "QRCODE");
             }else if(position==1) {
                 ball1.setImageResource(R.mipmap.circlen);
                 ball2.setImageResource(R.mipmap.circlew);
                 ball3.setImageResource(R.mipmap.circlen);
-                return Tutorial2Fragment.newInstance("QRCODE","QRCODE");
+                return Tutorial2Fragment.newInstance("QRCODE", "QRCODE");
             }else{
                 ball1.setImageResource(R.mipmap.circlen);
                 ball2.setImageResource(R.mipmap.circlen);
                 ball3.setImageResource(R.mipmap.circlew);
-                return Tutorial3Fragment.newInstance("QRCODE","QRCODE");
+                return Tutorial3Fragment.newInstance("QRCODE", "QRCODE");
             }
         }
     }

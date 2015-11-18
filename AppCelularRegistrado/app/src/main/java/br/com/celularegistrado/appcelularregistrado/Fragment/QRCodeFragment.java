@@ -1,15 +1,18 @@
-package br.com.celularegistrado.appcelularregistrado;
+package br.com.celularegistrado.appcelularregistrado.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import br.com.celularegistrado.appcelularregistrado.Activity.QRCodeInfoActivity;
+import br.com.celularegistrado.appcelularregistrado.R;
+import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
 
 
 public class QRCodeFragment extends Fragment {

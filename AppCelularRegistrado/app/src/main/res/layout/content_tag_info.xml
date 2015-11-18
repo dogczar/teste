@@ -8,6 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_tag_info"
-    tools:context="br.com.celularegistrado.appcelularregistrado.TagInfoActivity">
+    tools:context="br.com.celularegistrado.appcelularregistrado.Activity.TagInfoActivity">
 
 </RelativeLayout>
