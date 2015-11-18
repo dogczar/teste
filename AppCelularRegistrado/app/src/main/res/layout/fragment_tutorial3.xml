@@ -11,10 +11,10 @@
         <ImageView
 
             android:layout_gravity="center"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/logo_grande"/>
+            android:src="@mipmap/logo_nome"/>
         <TextView
             style="@style/TextViewWhite"
             android:layout_width="match_parent"
