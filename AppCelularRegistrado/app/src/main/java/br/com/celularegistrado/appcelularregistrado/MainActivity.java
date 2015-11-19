@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +29,8 @@ import br.com.celularegistrado.appcelularregistrado.Activity.InfoActivity;
 import br.com.celularegistrado.appcelularregistrado.Fragment.ImeiFragment;
 import br.com.celularegistrado.appcelularregistrado.Fragment.QRCodeFragment;
 import br.com.celularegistrado.appcelularregistrado.Fragment.TagFragment;
+import br.com.celularegistrado.appcelularregistrado.Model.Celular;
+import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -91,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        // List<Pet> petList = RestClient.getInstance().getPetsByTipo(tipo);
     }
 
     @Override
@@ -200,4 +202,9 @@ public class MainActivity extends AppCompatActivity {
         oldBackground = ld;
         currentColor = newColor;
     }
+
+
+
+
+
 }

@@ -11,7 +11,7 @@ import retrofit.converter.GsonConverter;
  */
 public class RestClient {
 
-    private static final String BASE_URL = "http://pet.brittus.com";
+    private static final String BASE_URL = "https://celularregistradows.herokuapp.com";
 
     private static AppService appService;
 

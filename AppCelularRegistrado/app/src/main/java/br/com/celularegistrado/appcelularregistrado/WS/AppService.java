@@ -17,49 +17,19 @@ public interface AppService {
 
 
     /**
-     *  Busca lista de todos os Pets
-     *  */
-    @GET("/pets/")
-    public List<Celular> getPets();
-
-
-    /**
      *  Busca Pet por ID
      *
      * @param id
      * @return
      */
-    @GET("/pets/{id}")
-    public Celular getPetId(@Path("id") Integer id);
+    @GET("/cad_celular/imei/{id}")
+    public Celular getCelularImei(@Path("id") Integer id);
 
+    @GET("/cad_celular/tag/{id}")
+    public Celular getCelularTag(@Path("id") Integer id);
 
-    /**
-     *  Busca Pets por tipo
-     *
-     * @param tipo
-     * @return
-     */
-    @GET("/pets/tipo/{tipo}")
-    public List<Celular> getPetsByTipo(@Path("tipo") String tipo);
-
-
-    /**
-     *  Deleta Pet por ID
-     *
-     * @param id
-     * @return
-     */
-    @DELETE("/pets/{id}")
-    public Celular RemovePetId(@Path("id") Integer id);
-
-
-    /**
-     * Salva ou atualiza um Pet
-     * @param pet
-     */
-
-    @POST("/pets")
-    public void SavePet(@Body Celular pet, Callback<String> cb);
+    @GET("/cad_celular/qrcode/{id}")
+    public Celular getCelularQRCode(@Path("id") String id);
 
 
 }

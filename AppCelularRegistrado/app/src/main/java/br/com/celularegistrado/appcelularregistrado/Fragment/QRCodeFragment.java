@@ -1,21 +1,31 @@
 package br.com.celularegistrado.appcelularregistrado.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PointF;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
 import br.com.celularegistrado.appcelularregistrado.Activity.QRCodeInfoActivity;
+import br.com.celularegistrado.appcelularregistrado.Model.Celular;
 import br.com.celularegistrado.appcelularregistrado.R;
 import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
+import br.com.celularegistrado.appcelularregistrado.WS.AppService;
+import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 
 
-public class QRCodeFragment extends Fragment {
+public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCodeReadListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -23,6 +33,11 @@ public class QRCodeFragment extends Fragment {
 
     private TextView txtHtml;
     private View v;
+    public String campoPesquisa;
+    public CardView card_view;
+
+    private QRCodeReaderView qrdecoderview;
+    public FloatingActionButton fab;
 
 
     // TODO: Rename and change types of parameters
@@ -61,6 +76,7 @@ public class QRCodeFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_qrcode, container, false);
 
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
+        card_view = (CardView) v.findViewById(R.id.card_view);
 
         txtHtml.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,18 +88,74 @@ public class QRCodeFragment extends Fragment {
 
         txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
 
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        qrdecoderview = (QRCodeReaderView) v.findViewById(R.id.qrdecoderview);
+        qrdecoderview.setOnQRCodeReadListener(this);
+        qrdecoderview.setFilterTouchesWhenObscured(true);
+
+        fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab.setEnabled(false);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), ResultadoActivity.class);
-                startActivity(i);
+                GetQRCodeTask();
             }
         });
 
         return v;
     }
 
+    public void GetQRCodeTask(){
 
+        new AsyncTask<Void, Void, Celular>(){
 
+            Celular celular;
+
+            @Override
+            protected Celular doInBackground(Void... params) {
+
+                celular = RestClient.getInstance().getCelularQRCode(campoPesquisa);
+                return celular;
+            }
+
+            @Override
+            protected void onPostExecute(Celular celular) {
+                super.onPostExecute(celular);
+
+                if(celular != null) {
+                    card_view.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                    fab.setEnabled(false);
+                    Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                    i.putExtra("celular",celular);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getActivity(), "Celular não cadastrado em nossa base de dados!", Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute();
+    }
+
+    @Override
+    public void onQRCodeRead(String text, PointF[] points) {
+
+        if (text != null) {
+            campoPesquisa = text;
+            qrdecoderview.getCameraManager().stopPreview();
+            card_view.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+            fab.setEnabled(true);
+        } else {
+            Toast.makeText(getActivity(), "QRCode inválido !", Toast.LENGTH_SHORT).show();
+            card_view.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
+        }
+
+    }
+
+    @Override
+    public void cameraNotFound() {
+
+    }
+
+    @Override
+    public void QRCodeNotFoundOnCamImage() {
+
+    }
 }

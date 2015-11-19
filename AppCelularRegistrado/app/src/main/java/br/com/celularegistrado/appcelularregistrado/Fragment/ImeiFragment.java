@@ -2,6 +2,7 @@ package br.com.celularegistrado.appcelularregistrado.Fragment;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.celularegistrado.appcelularregistrado.Activity.ImeiInfoActivity;
+import br.com.celularegistrado.appcelularregistrado.Model.Celular;
 import br.com.celularegistrado.appcelularregistrado.R;
 import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
+import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 
 
 public class ImeiFragment extends Fragment {
@@ -31,7 +35,8 @@ public class ImeiFragment extends Fragment {
     private View v;
     private TextView sinalizador;
     private TextView txtObrigatorio;
-    private EditText txtCampo;
+    public EditText txtCampo;
+    public String campoPesquisa;
 
 
     // TODO: Rename and change types and number of parameters
@@ -88,12 +93,19 @@ public class ImeiFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtCampo.length()>5) {
+                if(txtCampo.length()>4) {
                     sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
                     sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
                     txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
-                    Intent i = new Intent(getActivity(), ResultadoActivity.class);
-                    startActivity(i);
+
+                    campoPesquisa = txtCampo.getText().toString();
+
+                    GetImeiTask();
+
+                    //Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                    //startActivity(i);
+
+
                 }else{
                     sinalizador.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
                     sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
@@ -105,4 +117,31 @@ public class ImeiFragment extends Fragment {
         return v;
     }
 
+    public void GetImeiTask(){
+
+        new AsyncTask<Void, Void, Celular>(){
+
+            Celular celular;
+
+            @Override
+            protected Celular doInBackground(Void... params) {
+
+                celular = RestClient.getInstance().getCelularImei(Integer.parseInt(campoPesquisa));
+                return celular;
+            }
+
+            @Override
+            protected void onPostExecute(Celular celular) {
+                super.onPostExecute(celular);
+
+                if(celular != null) {
+                    Intent i = new Intent(getActivity(), ResultadoActivity.class);
+                    i.putExtra("celular",celular);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getActivity(),"Celular não cadastrado em nossa base de dados!",Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute();
+    }
 }
