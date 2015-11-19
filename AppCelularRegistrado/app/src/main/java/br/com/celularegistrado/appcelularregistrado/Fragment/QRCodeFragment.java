@@ -1,7 +1,8 @@
 package br.com.celularegistrado.appcelularregistrado.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,10 +19,9 @@ import android.widget.Toast;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
 import br.com.celularegistrado.appcelularregistrado.Activity.QRCodeInfoActivity;
+import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
 import br.com.celularegistrado.appcelularregistrado.Model.Celular;
 import br.com.celularegistrado.appcelularregistrado.R;
-import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
-import br.com.celularegistrado.appcelularregistrado.WS.AppService;
 import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 
 
@@ -38,6 +38,7 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
 
     private QRCodeReaderView qrdecoderview;
     public FloatingActionButton fab;
+    public TextView txtAlertaQRCode;
 
 
     // TODO: Rename and change types of parameters
@@ -77,6 +78,7 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
 
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
         card_view = (CardView) v.findViewById(R.id.card_view);
+        txtAlertaQRCode = (TextView) v.findViewById(R.id.txtAlertaQRCode);
 
         txtHtml.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +89,9 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
         });
 
         txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
+
+        checkCameraHardware(this.getActivity());
+
 
         qrdecoderview = (QRCodeReaderView) v.findViewById(R.id.qrdecoderview);
         qrdecoderview.setOnQRCodeReadListener(this);
@@ -142,6 +147,7 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
             qrdecoderview.getCameraManager().stopPreview();
             card_view.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
             fab.setEnabled(true);
+
         } else {
             Toast.makeText(getActivity(), "QRCode inválido !", Toast.LENGTH_SHORT).show();
             card_view.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
@@ -151,11 +157,50 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
 
     @Override
     public void cameraNotFound() {
-
+       // Toast.makeText(getActivity(), "QRCode não instalado !", Toast.LENGTH_SHORT).show();
+       // qrdecoderview.setEnabled(false);
+       // qrdecoderview.getCameraManager().stopPreview();
+       // txtAlertaQRCode.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void QRCodeNotFoundOnCamImage() {
-
+        //Toast.makeText(getActivity(), "QRCode não instalado !", Toast.LENGTH_SHORT).show();
+        //qrdecoderview.setEnabled(false);
+        //qrdecoderview.getCameraManager().stopPreview();
+        //txtAlertaQRCode.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        qrdecoderview.getCameraManager().startPreview();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        qrdecoderview.getCameraManager().stopPreview();
+    }
+
+    private boolean checkCameraHardware(Context context) {
+        if (!context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)){
+                // this device has a front camera
+                return true;
+            }
+            else if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)){
+                // this device has any camera
+                return true;
+            }
+            else {
+                // no camera on this device
+                return false;
+            }
+        } else {
+            // this device has a camera
+            return true;
+        }
+    }
+
 }
