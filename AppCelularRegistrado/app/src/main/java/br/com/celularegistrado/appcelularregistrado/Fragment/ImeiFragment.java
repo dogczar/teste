@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import br.com.celularegistrado.appcelularregistrado.Activity.ImeiInfoActivity;
 import br.com.celularegistrado.appcelularregistrado.Model.Celular;
 import br.com.celularegistrado.appcelularregistrado.R;
 import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
+import br.com.celularegistrado.appcelularregistrado.Util.Util;
 import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 
 
@@ -37,7 +39,8 @@ public class ImeiFragment extends Fragment {
     private TextView txtObrigatorio;
     public EditText txtCampo;
     public String campoPesquisa;
-
+    public ProgressBar progressBar;
+    public boolean erroApp = false;
 
     // TODO: Rename and change types and number of parameters
     public static ImeiFragment newInstance(String param1, String param2) {
@@ -66,7 +69,7 @@ public class ImeiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_imei, container, false);
-
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
         txtHtml.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,23 +96,21 @@ public class ImeiFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtCampo.length()>4) {
-                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
-                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
-                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
-
-                    campoPesquisa = txtCampo.getText().toString();
-
-                    GetImeiTask();
-
-                    //Intent i = new Intent(getActivity(), ResultadoActivity.class);
-                    //startActivity(i);
-
-
+                if(Util.isConnected(getActivity())) {
+                    if (txtCampo.length() > 4) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        sinalizador.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                        sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertPositivo));
+                        txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertPositivo));
+                        campoPesquisa = txtCampo.getText().toString();
+                        GetImeiTask();
+                    } else {
+                        sinalizador.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                        sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
+                        txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                    }
                 }else{
-                    sinalizador.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
-                    sinalizador.setBackgroundColor(getResources().getColor(R.color.colorAlertNegativo));
-                    txtObrigatorio.setTextColor(getResources().getColor(R.color.colorAlertNegativo));
+                    Toast.makeText(getActivity(), "Sem conexão de rede !", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -126,7 +127,13 @@ public class ImeiFragment extends Fragment {
             @Override
             protected Celular doInBackground(Void... params) {
 
-                celular = RestClient.getInstance().getCelularImei(Integer.parseInt(campoPesquisa));
+                try {
+                    celular = RestClient.getInstance().getCelularImei(campoPesquisa);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(),"Erro de coneão com o servidor !",Toast.LENGTH_LONG).show();
+                    erroApp = true;
+                    celular = null;
+                }
                 return celular;
             }
 
@@ -139,8 +146,11 @@ public class ImeiFragment extends Fragment {
                     i.putExtra("celular",celular);
                     startActivity(i);
                 }else{
-                    Toast.makeText(getActivity(),"Celular não cadastrado em nossa base de dados!",Toast.LENGTH_LONG).show();
+                    if(!erroApp) {
+                        Toast.makeText(getActivity(), "Celular não cadastrado em nossa base de dados!", Toast.LENGTH_LONG).show();
+                    }
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         }.execute();
     }

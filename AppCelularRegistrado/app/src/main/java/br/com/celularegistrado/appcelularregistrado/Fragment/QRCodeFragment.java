@@ -13,6 +13,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import br.com.celularegistrado.appcelularregistrado.Activity.QRCodeInfoActivity;
 import br.com.celularegistrado.appcelularregistrado.Activity.ResultadoActivity;
 import br.com.celularegistrado.appcelularregistrado.Model.Celular;
 import br.com.celularegistrado.appcelularregistrado.R;
+import br.com.celularegistrado.appcelularregistrado.Util.Util;
 import br.com.celularegistrado.appcelularregistrado.WS.RestClient;
 
 
@@ -39,11 +41,12 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
     private QRCodeReaderView qrdecoderview;
     public FloatingActionButton fab;
     public TextView txtAlertaQRCode;
-
+    public ProgressBar progressBar;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public boolean erroApp = false;
 
     // TODO: Rename and change types and number of parameters
     public static QRCodeFragment newInstance(String param1, String param2) {
@@ -66,20 +69,16 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_qrcode, container, false);
-
         txtHtml = (TextView) v.findViewById(R.id.txtHtml);
         card_view = (CardView) v.findViewById(R.id.card_view);
         txtAlertaQRCode = (TextView) v.findViewById(R.id.txtAlertaQRCode);
-
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         txtHtml.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,25 +86,28 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
                 startActivity(i);
             }
         });
-
         txtHtml.setText(Html.fromHtml("<font>QR Code (</font><font color=\"#36B9BD\">O que é Isso?</font>)"));
-
         checkCameraHardware(this.getActivity());
-
-
         qrdecoderview = (QRCodeReaderView) v.findViewById(R.id.qrdecoderview);
         qrdecoderview.setOnQRCodeReadListener(this);
         qrdecoderview.setFilterTouchesWhenObscured(true);
-
         fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setEnabled(false);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GetQRCodeTask();
+                if(Util.isConnected(getActivity())) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    GetQRCodeTask();
+                }else{
+                    Toast.makeText(getActivity(), "Sem conexão de rede !", Toast.LENGTH_LONG).show();
+                    qrdecoderview.getCameraManager().startPreview();
+                    card_view.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                    fab.setEnabled(false);
+                }
             }
         });
-
         return v;
     }
 
@@ -117,8 +119,14 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
 
             @Override
             protected Celular doInBackground(Void... params) {
+                try {
+                    celular = RestClient.getInstance().getCelularQRCode(campoPesquisa);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(),"Erro de coneão com o servidor !",Toast.LENGTH_LONG).show();
+                    erroApp = true;
+                    celular = null;
+                }
 
-                celular = RestClient.getInstance().getCelularQRCode(campoPesquisa);
                 return celular;
             }
 
@@ -133,8 +141,11 @@ public class QRCodeFragment extends Fragment implements QRCodeReaderView.OnQRCod
                     i.putExtra("celular",celular);
                     startActivity(i);
                 }else{
-                    Toast.makeText(getActivity(), "Celular não cadastrado em nossa base de dados!", Toast.LENGTH_LONG).show();
+                    if(!erroApp) {
+                        Toast.makeText(getActivity(), "Celular não cadastrado em nossa base de dados!", Toast.LENGTH_LONG).show();
+                    }
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         }.execute();
     }

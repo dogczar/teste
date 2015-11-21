@@ -50,6 +50,7 @@
             <EditText
                 android:id="@+id/txtCampo"
                 android:lines="1"
+                android:imeOptions="actionDone"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:maxLength="20"
@@ -68,6 +69,15 @@
             android:text="IMEI Obrigatória" />
 
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

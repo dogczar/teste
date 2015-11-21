@@ -23,10 +23,10 @@ public interface AppService {
      * @return
      */
     @GET("/cad_celular/imei/{id}")
-    public Celular getCelularImei(@Path("id") Integer id);
+    public Celular getCelularImei(@Path("id") String id);
 
     @GET("/cad_celular/tag/{id}")
-    public Celular getCelularTag(@Path("id") Integer id);
+    public Celular getCelularTag(@Path("id") String id);
 
     @GET("/cad_celular/qrcode/{id}")
     public Celular getCelularQRCode(@Path("id") String id);

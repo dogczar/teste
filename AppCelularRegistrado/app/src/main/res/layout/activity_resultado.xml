@@ -59,6 +59,7 @@
     <!--<include layout="@layout/content_resultado" />-->
     <com.mikhaellopez.circularimageview.CircularImageView
         android:layout_width="230dp"
+        android:id="@+id/foto_usuario"
         android:layout_height="230dp"
         android:src="@mipmap/pica_pau"
         app:border_color="#EEEEEE"

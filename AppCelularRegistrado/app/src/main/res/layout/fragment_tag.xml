@@ -5,26 +5,22 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     tools:context="br.com.celularegistrado.appcelularregistrado.Fragment.TagFragment">
-
     <LinearLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <TextView
             style="@style/TextViewWhite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Consultar por TAG" />
-
         <TextView
             style="@style/TextView"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Consulte utilizando a TAG constante no Selo para conrmar proprietário,dados do celular e se o Celular Registrado não é roubado" />
-
         <TextView
             style="@style/TextView"
             android:id="@+id/txtHtml"
@@ -32,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="QR Code (O que é Isso?)" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,14 +36,13 @@
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
             <TextView
                 android:id="@+id/sinalizador"
                 style="@style/Sinalizador"
                 android:text="  " />
-
             <EditText
                 android:id="@+id/txtCampo"
+                android:imeOptions="actionDone"
                 android:lines="1"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -56,12 +50,7 @@
                 android:layout_height="40dp"
                 style="@style/EditFieldSearch"
                 android:hint="INFORME A TAG" />
-
-
         </LinearLayout>
-
-
-
         <TextView
             android:id="@+id/txtObrigatorio"
             style="@style/TextView"
@@ -69,9 +58,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="TAG Obrigatória" />
-
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

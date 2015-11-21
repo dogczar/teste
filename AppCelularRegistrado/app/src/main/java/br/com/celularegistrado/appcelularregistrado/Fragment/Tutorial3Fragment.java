@@ -6,17 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import br.com.celularegistrado.appcelularregistrado.Activity.InfoActivity;
 import br.com.celularegistrado.appcelularregistrado.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Tutorial3Fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Tutorial3Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Tutorial3Fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,6 +48,5 @@ public class Tutorial3Fragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tutorial3, container, false);
     }
-
 
 }
