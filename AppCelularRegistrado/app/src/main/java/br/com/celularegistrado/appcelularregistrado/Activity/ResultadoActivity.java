@@ -27,6 +27,7 @@ public class ResultadoActivity extends AppCompatActivity {
     private CardView card_negativo;
     private CardView card_positivo;
     private CircularImageView foto_usuario;
+    private String prefixImagem = "http://celularegistrado.com.br/html/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +44,10 @@ public class ResultadoActivity extends AppCompatActivity {
         card_positivo = (CardView) findViewById(R.id.card_positivo);
         foto_usuario = (CircularImageView) findViewById(R.id.foto_usuario);
         Picasso.with(this).load(R.mipmap.loading).into(foto_usuario);
-        if(celular.getFoto_usuario()==null){
+        if(celular.getImagem_usuario()==null){
             Picasso.with(this).load(R.mipmap.no_avatar).into(foto_usuario);
         }else {
-            Picasso.with(this).load(celular.getFoto_usuario()).into(foto_usuario);
+            Picasso.with(this).load(prefixImagem+celular.getImagem_usuario()).into(foto_usuario);
         }
         nome_usuario.setText(celular.getNome_usuario());
         if(celular.getAlerta_celular()==1){

@@ -12,11 +12,11 @@ public class Celular implements Serializable {
     private String nome_usuario;
     private String email_usuario;
     private String imei_celular;
-    private String foto_usuario;
+    private String imagem_usuario;
 
 
     public Celular(Integer alerta_celular, String nome_modelo, String nome_operadora, String nome_fabricante,
-    String email_usuario, String nome_usuario, String imei_celular, String foto_usuario ) {
+    String email_usuario, String nome_usuario, String imei_celular, String imagem_usuario ) {
 
         this.alerta_celular = alerta_celular;
         this.nome_modelo = nome_modelo;
@@ -25,7 +25,7 @@ public class Celular implements Serializable {
         this.email_usuario = email_usuario;
         this.nome_usuario = nome_usuario;
         this.imei_celular = imei_celular;
-        this.foto_usuario = foto_usuario;
+        this.imagem_usuario = imagem_usuario;
 
     }
 
@@ -33,12 +33,12 @@ public class Celular implements Serializable {
 
     }
 
-    public String getFoto_usuario() {
-        return foto_usuario;
+    public String getImagem_usuario() {
+        return imagem_usuario;
     }
 
-    public void setFoto_usuario(String foto_usuario) {
-        this.foto_usuario = foto_usuario;
+    public void setImagem_usuario(String imagem_usuario) {
+        this.imagem_usuario = imagem_usuario;
     }
 
     public String getImei_celular() {

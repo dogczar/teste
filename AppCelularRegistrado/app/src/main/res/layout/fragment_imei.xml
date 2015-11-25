@@ -50,10 +50,12 @@
             <EditText
                 android:id="@+id/txtCampo"
                 android:lines="1"
+                android:inputType="number"
+                android:digits="*0123456789"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:maxLength="20"
+                android:maxLength="13"
                 android:layout_height="40dp"
                 style="@style/EditFieldSearch"
                 android:hint="INFORME O IMEI" />
